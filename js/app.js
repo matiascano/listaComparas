@@ -1,200 +1,15 @@
-// creamos un objeto para almacenar los productos desde el JSON
-const categorias = [
-  {
-    nombre: "Limpieza",
-    imagen: "img/categorias/limpieza.webp",
-    productos: [
-      { id: 1, nombre: "Lavandina", imagen: "img/productos/lavandina.webp" },
-      {
-        id: 2,
-        nombre: "Jabón para ropa",
-        imagen: "img/productos/jabon-ropa.webp",
-      },
-      {
-        id: 3,
-        nombre: "Suavizante para ropa",
-        imagen: "img/productos/suavisante.webp",
-      },
-      { id: 4, nombre: "Detergente", imagen: "img/productos/detergente.webp" },
-      {
-        id: 5,
-        nombre: "Limpiador de pisos",
-        imagen: "img/productos/limpiador-pisos.webp",
-      },
-    ],
-  },
-  {
-    nombre: "Despensa",
-    imagen: "img/categorias/despensa.webp",
-    productos: [
-      {
-        id: 6,
-        nombre: "Tomates en lata",
-        imagen: "img/productos/tomates-en-lata.webp",
-      },
-      { id: 7, nombre: "Arroz", imagen: "img/productos/arroz.webp" },
-      { id: 8, nombre: "Fideos", imagen: "img/productos/fideos.webp" },
-      { id: 9, nombre: "Aceite", imagen: "img/productos/aceite.webp" },
-      { id: 10, nombre: "Azúcar", imagen: "img/productos/azucar.webp" },
-      { id: 11, nombre: "Sal", imagen: "img/productos/sal.webp" },
-      { id: 12, nombre: "Harina", imagen: "img/productos/harina.webp" },
-    ],
-  },
-  {
-    nombre: "Bebidas",
-    imagen: "img/categorias/bebidas.webp",
-    productos: [
-      {
-        id: 13,
-        nombre: "Agua mineral",
-        imagen: "img/productos/agua-mineral.webp",
-      },
-      {
-        id: 14,
-        nombre: "Gaseosa cola",
-        imagen: "img/productos/gaseosa-cola.webp",
-      },
-      {
-        id: 15,
-        nombre: "Jugo de naranja",
-        imagen: "img/productos/jugo-de-naranja.webp",
-      },
-      { id: 16, nombre: "Té", imagen: "img/productos/te.webp" },
-      { id: 17, nombre: "Café", imagen: "img/productos/cafe.webp" },
-    ],
-  },
-  {
-    nombre: "Bebidas Alcohólicas",
-    imagen: "img/categorias/bebidas-alcoholicas.webp",
-    productos: [
-      { id: 18, nombre: "Cerveza", imagen: "img/productos/cerveza.webp" },
-      { id: 19, nombre: "Vino tinto", imagen: "img/productos/vino-tinto.webp" },
-      { id: 20, nombre: "Vodka", imagen: "img/productos/vodka.webp" },
-      { id: 21, nombre: "Whisky", imagen: "img/productos/whisky.webp" },
-    ],
-  },
-  {
-    nombre: "Higiene Personal",
-    imagen: "img/categorias/higiene-personal.webp",
-    productos: [
-      { id: 22, nombre: "Champú", imagen: "img/productos/champu.webp" },
-      {
-        id: 23,
-        nombre: "Acondicionador",
-        imagen: "img/productos/acondicionador.webp",
-      },
-      {
-        id: 24,
-        nombre: "Jabón de tocador",
-        imagen: "img/productos/jabon-tocador.webp",
-      },
-      {
-        id: 25,
-        nombre: "Pasta dental",
-        imagen: "img/productos/pasta-dental.webp",
-      },
-      {
-        id: 26,
-        nombre: "Cepillo de dientes",
-        imagen: "img/productos/cepillo-de-dientes.webp",
-      },
-    ],
-  },
-  {
-    nombre: "Lácteos",
-    imagen: "img/categorias/lacteos.webp",
-    productos: [
-      { id: 27, nombre: "Leche", imagen: "img/productos/leche.webp" },
-      { id: 28, nombre: "Yogur", imagen: "img/productos/yogur.webp" },
-      {
-        id: 29,
-        nombre: "Queso cremoso",
-        imagen: "img/productos/queso-cremoso.webp",
-      },
-      { id: 30, nombre: "Manteca", imagen: "img/productos/manteca.webp" },
-      {
-        id: 31,
-        nombre: "Crema de leche",
-        imagen: "img/productos/crema-leche.webp",
-      },
-    ],
-  },
-  {
-    nombre: "Mascotas",
-    imagen: "img/categorias/mascotas.webp",
-    productos: [
-      {
-        id: 32,
-        nombre: "Alimento para perros",
-        imagen: "img/productos/alimento-para-perros.webp",
-      },
-      {
-        id: 33,
-        nombre: "Alimento para gatos",
-        imagen: "img/productos/alimento-para-gatos.webp",
-      },
-      {
-        id: 34,
-        nombre: "Piedras sanitarias",
-        imagen: "img/productos/piedras-sanitarias.webp",
-      },
-      {
-        id: 35,
-        nombre: "Juguete para mascotas",
-        imagen: "img/productos/juguete-para-mascotas.webp",
-      },
-    ],
-  },
-  {
-    nombre: "Panadería",
-    imagen: "img/categorias/panaderia.webp",
-    productos: [
-      { id: 36, nombre: "Pan lactal", imagen: "img/productos/pan-lactal.webp" },
-      { id: 37, nombre: "Facturas", imagen: "img/productos/facturas.webp" },
-      { id: 38, nombre: "Galletitas", imagen: "img/productos/galletitas.webp" },
-      { id: 39, nombre: "Medialunas", imagen: "img/productos/medialunas.webp" },
-      {
-        id: 40,
-        nombre: "Tarta de frutas",
-        imagen: "img/productos/tarta-de-frutas.webp",
-      },
-    ],
-  },
-  {
-    nombre: "Perfumería",
-    imagen: "img/categorias/perfumeria.webp",
-    productos: [
-      { id: 41, nombre: "Perfume", imagen: "img/productos/perfume.webp" },
-      {
-        id: 42,
-        nombre: "Desodorante",
-        imagen: "img/productos/desodorante.webp",
-      },
-      {
-        id: 43,
-        nombre: "Loción corporal",
-        imagen: "img/productos/locion-corporal.webp",
-      },
-      {
-        id: 44,
-        nombre: "Agua de colonia",
-        imagen: "img/productos/agua-de-colonia.webp",
-      },
-    ],
-  },
-  {
-    nombre: "Verdulería",
-    imagen: "img/categorias/verduleria.webp",
-    productos: [
-      { id: 45, nombre: "Tomates", imagen: "img/productos/tomates.webp" },
-      { id: 46, nombre: "Papas", imagen: "img/productos/papas.webp" },
-      { id: 47, nombre: "Zanahorias", imagen: "img/productos/zanahorias.webp" },
-      { id: 48, nombre: "Lechuga", imagen: "img/productos/lechuga.webp" },
-      { id: 49, nombre: "Manzanas", imagen: "img/productos/manzanas.webp" },
-      { id: 50, nombre: "Bananas", imagen: "img/productos/bananas.webp" },
-    ],
-  },
-];
+let categorias = [];
+// Obtenemos la lista de categorías y productos
+const url = "data/data.json";
+
+fetch(url)
+  .then((response) => response.json())
+  .then((data) => {
+    categorias = data;
+    renderizarCategorias();
+    renderizarProductos();
+  })
+  .catch((error) => console.error("Error al cargar los datos:", error));
 
 // Función flecha para renderizar las categorías
 const renderizarCategorias = () => {
@@ -458,19 +273,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
   // Guardar la lista en localStorage cada vez que se actualiza
-  document.querySelectorAll(".inputCantidad").forEach((input) => {
-    input.addEventListener("change", guardarListaEnLocalStorage);
-  });
+  // document.querySelectorAll(".inputCantidad").forEach((input) => {
+  //   input.addEventListener("change", guardarListaEnLocalStorage);
+  // });
 
-  document.addEventListener("click", (event) => {
-    if (
-      event.target.classList.contains("mas") ||
-      event.target.classList.contains("menos") ||
-      event.target.classList.contains("eliminar")
-    ) {
-      guardarListaEnLocalStorage();
-    }
-  });
+  // document.addEventListener("click", (event) => {
+  //   if (
+  //     event.target.classList.contains("mas") ||
+  //     event.target.classList.contains("menos") ||
+  //     event.target.classList.contains("eliminar")
+  //   ) {
+  //     guardarListaEnLocalStorage();
+  //   }
+  // });
 
   // Abrimos y cerramos el modal de enviar por whatsapp
   // verificamos si existe el id enviarPorWhatsapp
@@ -514,14 +329,55 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+document.getElementById("productos").addEventListener("click", (e) => {
+  if (e.target.classList.contains("mas")) {
+    const input = e.target.parentElement.querySelector(".inputCantidad");
+    input.value = parseInt(input.value) + 1;
+    actualizarListaCompras();
+    guardarListaEnLocalStorage();
+  }
+
+  if (e.target.classList.contains("menos")) {
+    const input = e.target.parentElement.querySelector(".inputCantidad");
+    input.value = Math.max(0, parseInt(input.value) - 1);
+    actualizarListaCompras();
+    guardarListaEnLocalStorage();
+  }
+});
+
+// También escuchar cambios directos en los inputs dinámicos
+document.getElementById("productos").addEventListener("change", (e) => {
+  if (e.target.classList.contains("inputCantidad")) {
+    actualizarListaCompras();
+    guardarListaEnLocalStorage();
+  }
+});
+
+// mostramos y ocultamos el aside
+
+document.querySelector(".aside-toggle").addEventListener("click", () => {
+  const aside = document.querySelector("aside");
+  aside.classList.toggle("open");
+  // si existe la clase open
+  if (aside.classList.contains("open")) {
+    document
+      .querySelector(".aside-toggle .derecha")
+      .setAttribute("style", "display: flex;");
+    document
+      .querySelector(".aside-toggle .izquierda")
+      .setAttribute("style", "display: none;");
+  } else {
+    document
+      .querySelector(".aside-toggle .derecha")
+      .setAttribute("style", "display: none;");
+    document
+      .querySelector(".aside-toggle .izquierda")
+      .setAttribute("style", "display: flex;");
+  }
+});
+
 // Llamar a la función para renderizar las categorías al cargar la página
 // verificamos si existe el id categorias y productos
-if (document.getElementById("categorias")) {
-  renderizarCategorias();
-}
-if (document.getElementById("productos")) {
-  renderizarProductos();
-}
 if (document.getElementById("listado-productos")) {
   cargarListaDesdeLocalStorage();
 }

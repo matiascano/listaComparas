@@ -55,13 +55,15 @@ main {
 
 .wrapper {
   flex: 1;
-  display: grid;
-  grid-template-columns: 1fr 18.75rem;
+  display: flex;
   gap: var(--space-m);
   padding: var(--space-m);
+  flex-direction: column;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
 }
 
-.grid-categorias,
 .lista-productos {
   display: grid;
   gap: var(--space-m);
@@ -69,7 +71,11 @@ main {
 }
 
 .grid-categorias {
-  grid-template-columns: repeat(auto-fill, minmax(3.5rem, 1fr));
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--space-m);
+  max-width: 100%;
+  overflow-x: scroll;
 }
 
 .lista-productos {
@@ -176,7 +182,6 @@ button.eliminar:hover {
 }
 
 .categoria-card,
-aside,
 .producto-item,
 #listado-completo li {
   background-color: var(--color-light);
@@ -220,12 +225,55 @@ aside,
 }
 
 aside {
-  padding: var(--space-m);
+  display: flex;
+  position: fixed;
+  top: 2rem;
+  right: -270px;
+  z-index: 1;
+  width: 300px;
+  transition: right 0.3s ease-in-out;
+  border: none;
+  align-items: flex-start;
+  &.open {
+    right: -26px;
+  }
+}
+
+.aside-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  .flecha {
+    background-color: var(--color-light);
+    font-size: 1.5rem;
+    color: var(--color-dark);
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1/1;
+    border-top-left-radius: var(--radius-m);
+    border-bottom-left-radius: var(--radius-m);
+
+    &.izquierda {
+      display: flex;
+    }
+
+    &.derecha {
+      display: none;
+    }
+  }
+}
+
+.aside-content {
   height: fit-content;
-  position: sticky;
-  top: 1rem;
   max-height: calc(100vh - 2rem);
   overflow-y: auto;
+  background-color: var(--color-light);
+  border-bottom-left-radius: var(--radius-m);
+  box-shadow: var(--shadow);
 }
 
 aside ul {
