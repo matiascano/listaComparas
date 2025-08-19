@@ -6,8 +6,33 @@ fetch(url)
   .then((response) => response.json())
   .then((data) => {
     categorias = data;
-    renderizarCategorias();
-    renderizarProductos();
+
+    if (document.getElementById("categorias")) {
+      renderizarCategorias();
+    }
+    if (document.getElementById("productos")) {
+      renderizarProductos();
+    }
+
+    if (document.getElementById("listado-productos")) {
+      cargarListaDesdeLocalStorage();
+    }
+
+    if (document.getElementById("listado-completo")) {
+      crearChecklist();
+    }
+
+    if (document.getElementById("limpiar")) {
+      document
+        .getElementById("limpiar")
+        .addEventListener("click", limpiarLista);
+    }
+
+    if (document.getElementById("imprimir")) {
+      document
+        .getElementById("imprimir")
+        .addEventListener("click", imprimirLista);
+    }
   })
   .catch((error) => console.error("Error al cargar los datos:", error));
 
@@ -272,23 +297,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-  // Guardar la lista en localStorage cada vez que se actualiza
-  // document.querySelectorAll(".inputCantidad").forEach((input) => {
-  //   input.addEventListener("change", guardarListaEnLocalStorage);
-  // });
-
-  // document.addEventListener("click", (event) => {
-  //   if (
-  //     event.target.classList.contains("mas") ||
-  //     event.target.classList.contains("menos") ||
-  //     event.target.classList.contains("eliminar")
-  //   ) {
-  //     guardarListaEnLocalStorage();
-  //   }
-  // });
-
-  // Abrimos y cerramos el modal de enviar por whatsapp
-  // verificamos si existe el id enviarPorWhatsapp
   if (!document.getElementById("enviarPorWhatsapp")) return;
   const botonEnviar = document.getElementById("enviar");
   const modal = document.getElementById("enviarPorWhatsapp");
@@ -329,67 +337,52 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.getElementById("productos").addEventListener("click", (e) => {
-  if (e.target.classList.contains("mas")) {
-    const input = e.target.parentElement.querySelector(".inputCantidad");
-    input.value = parseInt(input.value) + 1;
-    actualizarListaCompras();
-    guardarListaEnLocalStorage();
-  }
+if (document.getElementById("productos")) {
+  document.getElementById("productos").addEventListener("click", (e) => {
+    if (e.target.classList.contains("mas")) {
+      const input = e.target.parentElement.querySelector(".inputCantidad");
+      input.value = parseInt(input.value) + 1;
+      actualizarListaCompras();
+      guardarListaEnLocalStorage();
+    }
 
-  if (e.target.classList.contains("menos")) {
-    const input = e.target.parentElement.querySelector(".inputCantidad");
-    input.value = Math.max(0, parseInt(input.value) - 1);
-    actualizarListaCompras();
-    guardarListaEnLocalStorage();
-  }
-});
+    if (e.target.classList.contains("menos")) {
+      const input = e.target.parentElement.querySelector(".inputCantidad");
+      input.value = Math.max(0, parseInt(input.value) - 1);
+      actualizarListaCompras();
+      guardarListaEnLocalStorage();
+    }
+  });
 
-// También escuchar cambios directos en los inputs dinámicos
-document.getElementById("productos").addEventListener("change", (e) => {
-  if (e.target.classList.contains("inputCantidad")) {
-    actualizarListaCompras();
-    guardarListaEnLocalStorage();
-  }
-});
+  // También escuchar cambios directos en los inputs dinámicos
+  document.getElementById("productos").addEventListener("change", (e) => {
+    if (e.target.classList.contains("inputCantidad")) {
+      actualizarListaCompras();
+      guardarListaEnLocalStorage();
+    }
+  });
+}
 
 // mostramos y ocultamos el aside
-
-document.querySelector(".aside-toggle").addEventListener("click", () => {
-  const aside = document.querySelector("aside");
-  aside.classList.toggle("open");
-  // si existe la clase open
-  if (aside.classList.contains("open")) {
-    document
-      .querySelector(".aside-toggle .derecha")
-      .setAttribute("style", "display: flex;");
-    document
-      .querySelector(".aside-toggle .izquierda")
-      .setAttribute("style", "display: none;");
-  } else {
-    document
-      .querySelector(".aside-toggle .derecha")
-      .setAttribute("style", "display: none;");
-    document
-      .querySelector(".aside-toggle .izquierda")
-      .setAttribute("style", "display: flex;");
-  }
-});
-
-// Llamar a la función para renderizar las categorías al cargar la página
-// verificamos si existe el id categorias y productos
-if (document.getElementById("listado-productos")) {
-  cargarListaDesdeLocalStorage();
-}
-
-if (document.getElementById("listado-completo")) {
-  crearChecklist();
-}
-
-if (document.getElementById("limpiar")) {
-  document.getElementById("limpiar").addEventListener("click", limpiarLista);
-}
-
-if (document.getElementById("imprimir")) {
-  document.getElementById("imprimir").addEventListener("click", imprimirLista);
+if (document.querySelector(".aside-toggle")) {
+  document.querySelector(".aside-toggle").addEventListener("click", () => {
+    const aside = document.querySelector("aside");
+    aside.classList.toggle("open");
+    // si existe la clase open
+    if (aside.classList.contains("open")) {
+      document
+        .querySelector(".aside-toggle .derecha")
+        .setAttribute("style", "display: flex;");
+      document
+        .querySelector(".aside-toggle .izquierda")
+        .setAttribute("style", "display: none;");
+    } else {
+      document
+        .querySelector(".aside-toggle .derecha")
+        .setAttribute("style", "display: none;");
+      document
+        .querySelector(".aside-toggle .izquierda")
+        .setAttribute("style", "display: flex;");
+    }
+  });
 }
