@@ -238,7 +238,6 @@ aside {
   width: 300px;
   transition: right 0.3s ease-in-out;
   border: none;
-  padding: var(--space-m);
   align-items: flex-start;
   &.open {
     right: -26px;
@@ -280,6 +279,7 @@ aside {
   background-color: var(--color-light);
   border-bottom-left-radius: var(--radius-m);
   box-shadow: var(--shadow);
+  padding: var(--space-m);
 }
 
 aside ul {
