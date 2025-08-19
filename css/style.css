@@ -51,17 +51,7 @@ main {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-}
-
-.wrapper {
-  flex: 1;
-  display: flex;
-  gap: var(--space-m);
-  padding: var(--space-m);
-  flex-direction: column;
-  margin: 0 auto;
-  width: 100%;
-  max-width: 1200px;
+  display: contents;
 }
 
 .lista-productos {
@@ -70,12 +60,26 @@ main {
   padding: var(--space-m);
 }
 
-.grid-categorias {
+.lista-categorias {
+  padding-block: var(--space-m);
+  margin-inline: var(--space-m);
+  width: auto;
   display: flex;
   flex-wrap: nowrap;
-  gap: var(--space-m);
-  max-width: 100%;
-  overflow-x: scroll;
+  overflow-x: auto;
+  gap: var(--space-s);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) var(--color-secondary);
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary);
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: var(--color-secondary);
+  }
 }
 
 .lista-productos {
@@ -190,6 +194,7 @@ button.eliminar:hover {
 }
 
 .categoria-card {
+  flex: 0 0 auto;
   text-align: center;
   transition: transform 0.2s;
   border-radius: 100%;
@@ -233,6 +238,7 @@ aside {
   width: 300px;
   transition: right 0.3s ease-in-out;
   border: none;
+  padding: var(--space-m);
   align-items: flex-start;
   &.open {
     right: -26px;
@@ -435,6 +441,7 @@ aside ul li:last-child {
   h2,
   .mas,
   .menos,
+  .go-top,
   .eliminar {
     display: none;
   }
