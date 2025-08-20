@@ -442,6 +442,16 @@ aside ul li:last-child {
   background-color: var(--color-primary-dark);
 }
 
+#buscador-productos {
+  margin-bottom: var(--space-m);
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-m);
+  width: 90%;
+  max-width: 500px;
+  display: block;
+}
+
 /* ==== Print ==== */
 @media print {
   button,

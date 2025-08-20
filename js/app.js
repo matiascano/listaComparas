@@ -33,6 +33,10 @@ fetch(url)
         .getElementById("imprimir")
         .addEventListener("click", imprimirLista);
     }
+
+    if (document.getElementById("buscador-productos")) {
+      buscadorProductos();
+    }
   })
   .catch((error) => console.error("Error al cargar los datos:", error));
 
@@ -241,6 +245,26 @@ const crearChecklist = () => {
 // preparamos lista para imprimir en impresora y abrimos el dialogo de impresion
 const imprimirLista = () => {
   window.print();
+};
+
+// Buscador de productos
+const buscadorProductos = () => {
+  const inputBuscador = document.getElementById("buscador-productos");
+  const productos = document.querySelectorAll(".producto-item");
+
+  inputBuscador.addEventListener("input", () => {
+    const valorBuscador = inputBuscador.value.toLowerCase();
+    productos.forEach((producto) => {
+      const nombreProducto = producto
+        .querySelector(".nombre")
+        .textContent.toLowerCase();
+      if (nombreProducto.includes(valorBuscador)) {
+        producto.style.display = "block";
+      } else {
+        producto.style.display = "none";
+      }
+    });
+  });
 };
 
 // Esperar a que el DOM esté completamente cargado
