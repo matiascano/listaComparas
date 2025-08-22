@@ -10,30 +10,42 @@
     <header>
       <h1>Lista de Compras</h1>
     </header>
-    <!-- <div class="wrapper"> -->
     <main>
-      <!-- Categorías -->
-      <h2>Categorías</h2>
-      <section id="categorias" class="lista-categorias">
-        <p>Esto está en desierto...</p>
-      </section>
-
-      <!-- Productos de la categoría seleccionada -->
-      <h2>Productos</h2>
-      <!-- Buscador de productos -->
-      <div class="buscador">
-        <input
-          type="text"
-          id="buscador-productos"
-          placeholder="Buscar productos..."
-        />
+      <div class="content">
+        <h2>Categorías</h2>
+        <section id="categorias" class="lista-categorias">
+          <p>Esto está en desierto...</p>
+        </section>
+        <h2>Productos</h2>
+        <!-- Buscador de productos -->
+        <div class="buscador">
+          <input
+            type="text"
+            id="buscador-productos"
+            placeholder="Buscar productos..."
+          />
+        </div>
+        <section id="productos" class="lista-productos">
+          <p>Esto está en desierto...</p>
+        </section>
+        <div id="producto-nuevo">
+          <h3>Agregar producto a la lista</h3>
+          <input
+            type="text"
+            id="nombre-nuevo-producto"
+            placeholder="Nombre del producto"
+          />
+          <input
+            type="number"
+            id="cantidad-nueva"
+            placeholder="Cantidad"
+            min="1"
+          />
+          <button id="agregar-nuevo-producto">Agregar</button>
+        </div>
       </div>
-      <section id="productos" class="lista-productos">
-        <p>Esto está en desierto...</p>
-      </section>
     </main>
     <aside>
-      <!-- flecha a la izquierda para abrir flecha derecha para ocultar -->
       <div class="aside-toggle">
         <span class="flecha izquierda">←</span>
         <span class="flecha derecha">→</span>
@@ -54,7 +66,6 @@
         >
       </div>
     </aside>
-    <!-- </div> -->
 
     <footer>
       <p>

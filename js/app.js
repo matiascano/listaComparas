@@ -1,5 +1,4 @@
 let categorias = [];
-// Obtenemos la lista de categorías y productos
 const url = "data/data.json";
 
 fetch(url)
@@ -37,10 +36,22 @@ fetch(url)
     if (document.getElementById("buscador-productos")) {
       buscadorProductos();
     }
+
+    if (document.getElementById("producto-nuevo")) {
+      document.addEventListener("click", (e) => {
+        if (e.target.id === "agregar-nuevo-producto") {
+          const nombreProducto = document.getElementById(
+            "nombre-nuevo-producto"
+          ).value;
+          const cantidadProducto =
+            document.getElementById("cantidad-nueva").value;
+          agregarProductoNuevo(nombreProducto, cantidadProducto);
+        }
+      });
+    }
   })
   .catch((error) => console.error("Error al cargar los datos:", error));
 
-// Función flecha para renderizar las categorías
 const renderizarCategorias = () => {
   const contenedorCategorias = document.getElementById("categorias");
   contenedorCategorias.innerHTML = "";
@@ -55,11 +66,7 @@ const renderizarCategorias = () => {
     imagenCategoria.src = categoria.imagen;
     imagenCategoria.alt = categoria.nombre;
 
-    // const tituloCategoria = document.createElement("h3");
-    // tituloCategoria.textContent = categoria.nombre;
-
     categoriaCard.appendChild(imagenCategoria);
-    // categoriaCard.appendChild(tituloCategoria);
     contenedorCategorias.appendChild(categoriaCard);
   });
   const todas = document.createElement("article");
@@ -69,10 +76,7 @@ const renderizarCategorias = () => {
   const imgTodas = document.createElement("img");
   imgTodas.src = "img/categorias/todas.webp";
   imgTodas.alt = "Todas";
-  // const tituloTodas = document.createElement("h3");
-  // tituloTodas.textContent = "Todas";
   todas.appendChild(imgTodas);
-  // todas.appendChild(tituloTodas);
   contenedorCategorias.appendChild(todas);
 };
 
@@ -84,6 +88,7 @@ const renderizarProductos = () => {
     categoria.productos.forEach((producto) => {
       const productoItem = document.createElement("article");
       productoItem.classList.add("producto-item");
+      productoItem.setAttribute("data-id", producto.id);
       productoItem.setAttribute("data-categoria", categoria.nombre);
 
       const categoriaProducto = document.createElement("span");
@@ -129,7 +134,7 @@ const renderizarProductos = () => {
   });
 };
 
-const actualizarListaCompras = () => {
+const actualizarListaCompras = (id, nombre, cantidad) => {
   const listadoProductos = document.getElementById("listado-productos");
   listadoProductos.innerHTML = "";
 
@@ -242,32 +247,39 @@ const crearChecklist = () => {
   }
 };
 
-// preparamos lista para imprimir en impresora y abrimos el dialogo de impresion
 const imprimirLista = () => {
   window.print();
 };
 
-// Buscador de productos
 const buscadorProductos = () => {
   const inputBuscador = document.getElementById("buscador-productos");
   const productos = document.querySelectorAll(".producto-item");
 
   inputBuscador.addEventListener("input", () => {
+    // si no coincide con nada ofrecemos agregar a la lista y mostramos #producto-nuevo, precargamos el nombre
     const valorBuscador = inputBuscador.value.toLowerCase();
-    productos.forEach((producto) => {
+    const productosCoincidentes = Array.from(productos).filter((producto) => {
       const nombreProducto = producto
         .querySelector(".nombre")
         .textContent.toLowerCase();
-      if (nombreProducto.includes(valorBuscador)) {
-        producto.style.display = "block";
-      } else {
-        producto.style.display = "none";
-      }
+      return nombreProducto.includes(valorBuscador);
     });
+    // mientras haya coincidencias, mostramos el producto
+    productos.forEach((producto) => {
+      producto.style.display = "none";
+    });
+    productosCoincidentes.forEach((producto) => {
+      producto.style.display = "block";
+    });
+    // si no hay coincidencias, mostramos el card de producto-nuevo
+    if (productosCoincidentes.length === 0) {
+      const nuevoProducto = document.getElementById("producto-nuevo");
+      nuevoProducto.style.display = "block";
+      nuevoProducto.querySelector("#nombre-nuevo-producto").value =
+        valorBuscador;
+    }
   });
 };
-
-// Esperar a que el DOM esté completamente cargado
 
 document.addEventListener("DOMContentLoaded", () => {
   // Filtrado de productos por categoría
@@ -317,7 +329,12 @@ document.addEventListener("DOMContentLoaded", () => {
     .querySelectorAll(".producto-item .inputCantidad")
     .forEach((input) => {
       input.addEventListener("change", () => {
-        actualizarListaCompras();
+        const id = input.closest(".producto-item").getAttribute("data-id");
+        const nombre = input
+          .closest(".producto-item")
+          .querySelector(".nombre").textContent;
+        const cantidad = parseInt(input.value);
+        actualizarListaCompras(id, nombre, cantidad);
       });
     });
 
@@ -366,14 +383,24 @@ if (document.getElementById("productos")) {
     if (e.target.classList.contains("mas")) {
       const input = e.target.parentElement.querySelector(".inputCantidad");
       input.value = parseInt(input.value) + 1;
-      actualizarListaCompras();
+      const id = e.target.closest(".producto-item").getAttribute("data-id");
+      const cantidad = parseInt(input.value);
+      const nombre = e.target
+        .closest(".producto-item")
+        .querySelector(".nombre").textContent;
+      actualizarListaCompras(id, nombre, cantidad);
       guardarListaEnLocalStorage();
     }
 
     if (e.target.classList.contains("menos")) {
       const input = e.target.parentElement.querySelector(".inputCantidad");
       input.value = Math.max(0, parseInt(input.value) - 1);
-      actualizarListaCompras();
+      const id = e.target.closest(".producto-item").getAttribute("data-id");
+      const cantidad = parseInt(input.value);
+      const nombre = e.target
+        .closest(".producto-item")
+        .querySelector(".nombre").textContent;
+      actualizarListaCompras(id, nombre, cantidad);
       guardarListaEnLocalStorage();
     }
   });
@@ -381,7 +408,12 @@ if (document.getElementById("productos")) {
   // También escuchar cambios directos en los inputs dinámicos
   document.getElementById("productos").addEventListener("change", (e) => {
     if (e.target.classList.contains("inputCantidad")) {
-      actualizarListaCompras();
+      const id = e.target.closest(".producto-item").getAttribute("data-id");
+      const cantidad = parseInt(input.value);
+      const nombre = e.target
+        .closest(".producto-item")
+        .querySelector(".nombre").textContent;
+      actualizarListaCompras(id, nombre, cantidad);
       guardarListaEnLocalStorage();
     }
   });

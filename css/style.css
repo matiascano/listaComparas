@@ -452,6 +452,33 @@ aside ul li:last-child {
   display: block;
 }
 
+#producto-nuevo {
+  margin: var(--space-s) auto;
+  width: 500px;
+  max-width: 90%;
+  padding: var(--space-m);
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--radius-s);
+  background-color: var(--color-light);
+  display: none;
+}
+
+#producto-nuevo h3 {
+  margin-bottom: var(--space-s);
+}
+
+#producto-nuevo input {
+  width: 100%;
+  padding: var(--space-xs);
+  margin-bottom: var(--space-s);
+  border: 1px solid var(--color-secondary-dark);
+  border-radius: var(--radius-s);
+}
+
+#producto-nuevo button {
+  width: 100%;
+}
+
 /* ==== Print ==== */
 @media print {
   button,
