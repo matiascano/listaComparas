@@ -42,7 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const listaGuardada = JSON.parse(localStorage.getItem("lista")) || [];
     const producto = listaGuardada.find((item) => item.nombre === nombre);
     if (producto) {
-      // abrimos el modal nuevaCantidad
       const modal = document.querySelector(".modalCantidad");
       modal.style.display = "flex";
 
@@ -50,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const nuevaCantidad = document.getElementById("nueva-cantidad").value;
         if (nuevaCantidad) {
           producto.cantidad = nuevaCantidad;
-          producto.pendiente = true; // Marcar como pendiente al actualizar cantidad
+          producto.pendiente = true;
           localStorage.setItem("lista", JSON.stringify(listaGuardada));
           cargarLista();
           modal.style.display = "none";
@@ -88,27 +87,23 @@ document.addEventListener("DOMContentLoaded", () => {
       editarProducto(nombre);
     }
 
-    // Manejar click en checkbox para cambiar estado pendiente
     if (e.target.type === "checkbox" && e.target.dataset.nombre) {
       const nombre = e.target.dataset.nombre;
       cambiarEstadoPendiente(nombre);
     }
 
-    // Limpiar lista completa
     if (e.target.closest("#limpiar")) {
       localStorage.removeItem("lista");
       cargarLista();
       toast.success("Lista limpiada");
     }
 
-    // Cerrar modal con la X
     if (e.target.classList.contains("close")) {
       const modal = document.querySelector(".modalCantidad");
       modal.style.display = "none";
       document.getElementById("nueva-cantidad").value = "";
     }
 
-    // Cerrar modal haciendo clic fuera del contenido
     if (e.target.classList.contains("modalCantidad")) {
       const modal = document.querySelector(".modalCantidad");
       modal.style.display = "none";
@@ -128,12 +123,10 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.style.display = "none";
   });
 
-  // Enviar la lista por WhatsApp
   const botonEnviarWhatsApp = document.getElementById("confirmar-enviar");
   botonEnviarWhatsApp.addEventListener("click", () => {
     const numeroWhatsApp = document.getElementById("numero-whatsapp").value;
     const listaCompleta = [];
-    // obtenemos el listado de productos del localStorage
     const listaGuardada = JSON.parse(localStorage.getItem("lista")) || [];
     
     listaGuardada.forEach((producto) => {

@@ -1,7 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  /*************
-   * FUNCIONES *
-   ************/
 
   const cargarLista = () => {
     const listaGuardada = JSON.parse(localStorage.getItem("lista")) || [];
@@ -32,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let categoriasGlobal = [];
   let productosGlobal = [];
 
-  // Cargar JSON local
   axios
     .get("data/data.json")
     .then((res) => {
@@ -48,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       buscadorProductos();
 
-      // Agregar filtro por categorías después de renderizar
       document.querySelectorAll(".categoria-card").forEach((card) => {
         card.addEventListener("click", () => {
           const categoriaSeleccionada = card.getAttribute(
@@ -134,7 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
       contenedorProductos.innerHTML += cuerpoProducto;
     });
 
-    // Verificar que los inputs se crearon correctamente
     setTimeout(() => {
       listaGuardada.forEach((producto) => {
         const input = document.getElementById(`cantidad-${producto.id}`);
@@ -169,7 +163,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const quitarProducto = (id) => {
     let listaGuardada = JSON.parse(localStorage.getItem("lista")) || [];
-    listaGuardada = listaGuardada.filter((prod) => prod.id !== parseInt(id));
+    
+    const idString = String(id);
+    listaGuardada = listaGuardada.filter((prod) => String(prod.id) !== idString);
 
     localStorage.setItem("lista", JSON.stringify(listaGuardada));
 
@@ -188,7 +184,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const valorBuscador = inputBuscador.value.toLowerCase().trim();
       const modal = document.querySelector(".modalProductoNuevo");
 
-      // Si el buscador está vacío, mostrar todos los productos y ocultar modal
       if (valorBuscador === "") {
         productos.forEach((producto) => {
           producto.style.display = "block";
@@ -204,17 +199,14 @@ document.addEventListener("DOMContentLoaded", () => {
         return nombreProducto.includes(valorBuscador);
       });
 
-      // Ocultar todos los productos primero
       productos.forEach((producto) => {
         producto.style.display = "none";
       });
 
-      // Mostrar productos coincidentes
       productosCoincidentes.forEach((producto) => {
         producto.style.display = "block";
       });
 
-      // Si no hay coincidencias, mostrar modal con el valor precargado
       if (productosCoincidentes.length === 0) {
         modal.style.display = "flex";
         document.getElementById("nombre-nuevo-producto").value = valorBuscador;
@@ -229,9 +221,6 @@ document.addEventListener("DOMContentLoaded", () => {
     agregarProducto(id, nombre, cantidad);
   };
 
-  /*************
-   * EVENTOS   *
-   ************/
 
   document.addEventListener("click", (e) => {
     if (e.target.closest(".mas")) {
@@ -276,7 +265,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (e.target.closest(".eliminar")) {
-      const id = parseInt(e.target.closest("button").dataset.id);
+      const id = e.target.closest("button").dataset.id;
       quitarProducto(id);
     }
 
@@ -287,13 +276,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const cantidadProducto = document.getElementById("cantidad-nueva").value;
       agregarProductoNuevo(nombreProducto, cantidadProducto);
 
-      // Cerrar modal y limpiar formulario
       const modal = document.querySelector(".modalProductoNuevo");
       modal.style.display = "none";
       document.getElementById("nombre-nuevo-producto").value = "";
       document.getElementById("cantidad-nueva").value = "";
 
-      // Limpiar buscador y mostrar todos los productos
       const inputBuscador = document.getElementById("buscador-productos");
       inputBuscador.value = "";
       document.querySelectorAll(".producto-item").forEach((producto) => {
@@ -301,25 +288,18 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // Cerrar modal con la X
     if (e.target.classList.contains("close")) {
       const modal = document.querySelector(".modalProductoNuevo");
       modal.style.display = "none";
     }
 
-    // Cerrar modal haciendo clic fuera del contenido
     if (e.target.classList.contains("modalProductoNuevo")) {
       const modal = document.querySelector(".modalProductoNuevo");
       modal.style.display = "none";
     }
   });
 
-  /*************
-   * INICIO    *
-   ************/
 
-  // Eliminé esta sección porque ya se maneja en el .then() de axios
-  // y estaba causando que se renderizaran los productos dos veces
 
   if (document.querySelector(".aside-toggle")) {
     document.querySelector(".aside-toggle").addEventListener("click", () => {
