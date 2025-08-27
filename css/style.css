@@ -326,14 +326,41 @@ aside ul li:last-child {
   align-items: center;
 }
 
-.cantidad-controles input {
-  width: 3.13rem;
+.cantidad-controles button {
+  padding: 0.1rem 0.5rem;
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  height: 33px;
+  cursor: pointer;
+}
+
+button.menos {
+  border-top-left-radius: var(--radius-s);
+  border-bottom-left-radius: var(--radius-s);
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+button.mas {
+  border-top-right-radius: var(--radius-s);
+  border-bottom-right-radius: var(--radius-s);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.inputCantidad {
   text-align: center;
-  margin: 0 var(--space-s);
-  padding: var(--space-xs);
-  font-size: 1rem;
-  border: 1px solid var(--color-secondary-dark);
-  border-radius: var(--radius-s);
+  padding: 0.5rem 1rem;
+  border-inline: 0px;
+  border-block: 1px solid #ccc;
+  width: 3.75rem;
+}
+
+.producto-item span,
+.producto-item img,
+.producto-item div {
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .botonera {

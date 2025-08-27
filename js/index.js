@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <button class="menos">
               <span class="material-symbols-outlined">remove</span>
             </button>
-            <input id="cantidad-${producto.id}" type="number" min="0" class="inputCantidad" value="${cantidadGuardada}" disabled />
+            <input id="cantidad-${producto.id}" type="text" min="0" class="inputCantidad" value="${cantidadGuardada}" disabled />
             <button class="mas">
               <span class="material-symbols-outlined">add</span>
             </button>
