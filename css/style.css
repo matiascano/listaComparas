@@ -452,6 +452,32 @@ aside ul li:last-child {
   display: block;
 }
 
+.modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: var(--color-light);
+  padding: var(--space-m);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow);
+  width: 90%;
+  max-width: 25rem;
+  text-align: center;
+  position: relative;
+}
+
+.finalizado {
+  text-decoration: line-through;
+  color: var(--color-secondary);
+}
+
 #producto-nuevo {
   margin: var(--space-s) auto;
   width: 500px;
@@ -460,7 +486,6 @@ aside ul li:last-child {
   border: 1px solid var(--color-secondary);
   border-radius: var(--radius-s);
   background-color: var(--color-light);
-  display: none;
 }
 
 #producto-nuevo h3 {
