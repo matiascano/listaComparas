@@ -11,11 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    listaGuardada.forEach((producto) => {
+    listaGuardada.forEach((producto, index) => {
       const claseFinalizodo = !producto.pendiente ? "finalizado" : "";
       const checked = !producto.pendiente ? "checked" : "";
       const item = `
-        <li class="${claseFinalizodo}">
+        <li class="${claseFinalizodo}" data-nombre="${producto.nombre}" data-index="${index}">
         <span class="item-left">
           <input type="checkbox" ${checked} data-pendiente="${producto.pendiente}" data-nombre="${producto.nombre}" />
           ${producto.nombre}: ${producto.cantidad}
@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
       listadoCompleto.innerHTML += item;
     });
+    
+    initSortable();
   };
 
   const eliminarProducto = (nombre) => {
@@ -72,6 +74,39 @@ document.addEventListener("DOMContentLoaded", () => {
       const tipo = producto.pendiente ? "error" : "success";
       toast[tipo](mensaje);
     }
+  };
+
+  const initSortable = () => {
+    const listadoCompleto = document.getElementById("listado-completo");
+    if (listadoCompleto && listadoCompleto.children.length > 0 && !listadoCompleto.children[0].textContent.includes("Aún no hay nada")) {
+      Sortable.create(listadoCompleto, {
+        animation: 150,
+        ghostClass: 'sortable-ghost',
+        chosenClass: 'sortable-chosen',
+        dragClass: 'sortable-drag',
+        onEnd: function() {
+          actualizarOrdenEnLocalStorage();
+        }
+      });
+    }
+  };
+
+  const actualizarOrdenEnLocalStorage = () => {
+    const listadoCompleto = document.getElementById("listado-completo");
+    const items = Array.from(listadoCompleto.children);
+    const listaGuardada = JSON.parse(localStorage.getItem("lista")) || [];
+    const nuevaLista = [];
+
+    items.forEach((li) => {
+      const nombre = li.dataset.nombre;
+      const producto = listaGuardada.find((item) => item.nombre === nombre);
+      if (producto) {
+        nuevaLista.push(producto);
+      }
+    });
+
+    localStorage.setItem("lista", JSON.stringify(nuevaLista));
+    toast.success("Orden actualizado");
   };
 
   cargarLista();

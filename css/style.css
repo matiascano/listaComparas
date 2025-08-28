@@ -46,6 +46,29 @@ a[target="_blank"]::after {
     url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M10.5 3a.5.5 0 0 0 0 1h2.793L8.146 9.146a.5.5 0 1 0 .708.708L14 4.707V7.5a.5.5 0 0 0 1 0v-4a.5.5 0 0 0-.5-.5h-4z"/><path d="M13.5 13a.5.5 0 0 1-.5.5h-10A.5.5 0 0 1 2.5 13v-10a.5.5 0 0 1 .5-.5H6a.5.5 0 0 1 0 1H3v9h9V10a.5.5 0 0 1 1 0v3z"/></svg>');
 }
 
+/* ==== SortableJS Styles ==== */
+.sortable-ghost {
+  opacity: 0.4;
+}
+
+.sortable-chosen {
+  cursor: grabbing;
+}
+
+.sortable-drag {
+  opacity: 0.8;
+  transform: rotate(2deg);
+}
+
+#listado-completo li {
+  cursor: grab;
+  user-select: none;
+}
+
+#listado-completo li:active {
+  cursor: grabbing;
+}
+
 /* ==== Layout ==== */
 main {
   width: 100%;
