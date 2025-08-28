@@ -4,6 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lista de Compras por Categorías</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
@@ -11,12 +19,18 @@
       <h1><a href="index.html">Lista de Compras</a></h1>
     </header>
     <main>
-      <h2>Listado</h2>
-      <button id="imprimir">Imprimir</button>
-      <button id="enviar">Enviar por WhatsApp</button>
-      <ul id="listado-completo">
-        <li>Aún no hay nada aquí.</li>
-      </ul>
+      <section>
+        <h2>Listado</h2>
+        <div class="botonera">
+          <button id="imprimir">Imprimir</button>
+          <button id="enviar">Enviar por WhatsApp</button>
+          <button id="limpiar">Limpiar</button>
+          <a href="./index.html">Cargar más productos</a>
+        </div>
+        <ul id="listado-completo">
+          <li>Aún no hay nada aquí.</li>
+        </ul>
+      </section>
     </main>
 
     <footer>
@@ -40,8 +54,27 @@
       </div>
     </div>
 
-    <a href="#top" class="go-top">↑</a>
+    <a href="#top" class="go-top"
+      ><span class="material-symbols-outlined"> arrow_circle_up </span></a
+    >
 
-    <script src="./js/app.js"></script>
+    <div class="modal modalCantidad">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Editar Cantidad</h2>
+        <label for="nueva-cantidad">Nueva Cantidad:</label>
+        <input
+          type="number"
+          id="nueva-cantidad"
+          placeholder="Ingrese la nueva cantidad"
+        />
+        <button id="confirmar-cantidad">Confirmar</button>
+      </div>
+    </div>
+
+    <script src="./js/listado.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
   </body>
 </html>
