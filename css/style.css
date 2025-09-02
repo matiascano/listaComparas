@@ -40,6 +40,12 @@ body {
   min-height: 100vh;
 }
 
+input[type="checkbox"] {
+  accent-color: var(--color-primary);
+  transform: scale(2.5);
+  margin-inline: 0.5rem 1rem;
+}
+
 a[target="_blank"]::after {
   content: "";
   display: inline-block;
