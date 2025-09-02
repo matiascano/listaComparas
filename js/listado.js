@@ -226,4 +226,9 @@ document.addEventListener("DOMContentLoaded", () => {
     window.open(urlWhatsApp, "_blank");
     modal.style.display = "none";
   });
+
+  const botonImprimir = document.getElementById("imprimir");
+  botonImprimir.addEventListener("click", () => {
+    window.print();
+  });
 });
