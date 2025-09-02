@@ -165,7 +165,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  const quitarProducto = (id) => {
+  const quitarProducto = async (id) => {
+    const confirmacion = await confirmarEliminacion();
+    if (!confirmacion) return;
     let listaGuardada = JSON.parse(localStorage.getItem("lista")) || [];
 
     const idString = String(id);
@@ -180,6 +182,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     cargarLista();
     toast.error("Producto quitado");
+  };
+
+  const confirmarEliminacion = () => {
+    return new Promise((resolve) => {
+      const modal = document.querySelector(".modalEliminar");
+      modal.style.display = "flex";
+
+      document.getElementById("confirmar-eliminar").onclick = () => {
+        modal.style.display = "none";
+        resolve(true);
+      };
+      document.getElementById("cancelar-eliminar").onclick = () => {
+        modal.style.display = "none";
+        resolve(false);
+      };
+    });
   };
 
   const buscadorProductos = () => {
