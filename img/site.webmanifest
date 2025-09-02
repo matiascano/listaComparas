@@ -1,6 +1,6 @@
 {
-  "name": "notiOlvides",
-  "short_name": "notiOlvides",
+  "name": "noteOlvides",
+  "short_name": "noteOlvides",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",

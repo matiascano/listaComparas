@@ -172,18 +172,28 @@ aside h2 {
 }
 
 /* ==== Componentes Generales ==== */
-header,
-footer {
-  background-color: var(--color-primary);
-  color: var(--color-light);
-  text-align: center;
-}
 
 header {
   padding: var(--space-m);
+  background-color: var(--color-secondary-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header h1 span {
+  display: none;
+}
+
+header img {
+  height: 40px;
+  vertical-align: middle;
 }
 
 footer {
+  text-align: center;
+  color: var(--color-light);
+  background-color: var(--color-primary);
   padding: var(--space-s);
   position: relative;
   bottom: 0;
