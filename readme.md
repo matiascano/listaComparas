@@ -1,4 +1,4 @@
-# Lista de Compras - Proyecto Final CoderHouse JavaScript
+# noteOlvides - Proyecto Final CoderHouse JavaScript
 
 Aplicación web interactiva para gestionar listas de compras con categorización de productos, desarrollada como proyecto final del curso de JavaScript en CoderHouse.
 

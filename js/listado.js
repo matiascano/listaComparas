@@ -225,7 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const modal = document.getElementById("enviarPorWhatsapp");
 
-    const mensaje = `Lista de Compras:\n\n${listaCompleta.join("\n")}`;
+    const mensaje = `noteOlvides:\n\n${listaCompleta.join("\n")}`;
     const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(
       mensaje
     )}`;
