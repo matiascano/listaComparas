@@ -60,6 +60,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
+  const confirmarLimpiar = () => {
+    return new Promise((resolve) => {
+      const modal = document.querySelector(".modalLimpiar");
+      modal.style.display = "flex";
+
+      document.getElementById("confirmar-limpiar").onclick = () => {
+        modal.style.display = "none";
+        resolve(true);
+      };
+      document.getElementById("cancelar-limpiar").onclick = () => {
+        modal.style.display = "none";
+        resolve(false);
+      };
+    });
+  };
+
   const editarProducto = (nombre) => {
     const listaGuardada = JSON.parse(localStorage.getItem("lista")) || [];
     const producto = listaGuardada.find((item) => item.nombre === nombre);
@@ -156,9 +172,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (e.target.closest("#limpiar")) {
-      localStorage.removeItem("lista");
-      cargarLista();
-      toast.success("Lista limpiada");
+      const confirmarYLimpiar = async () => {
+        const confirmacion = await confirmarLimpiar();
+        if (confirmacion) {
+          localStorage.removeItem("lista");
+          cargarLista();
+          toast.success("Lista limpiada");
+        }
+      };
+      confirmarYLimpiar();
     }
 
     if (e.target.classList.contains("close")) {

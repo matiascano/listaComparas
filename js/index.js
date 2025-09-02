@@ -200,6 +200,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
+  const confirmarLimpiar = () => {
+    return new Promise((resolve) => {
+      const modal = document.querySelector(".modalLimpiar");
+      modal.style.display = "flex";
+
+      document.getElementById("confirmar-limpiar").onclick = () => {
+        modal.style.display = "none";
+        resolve(true);
+      };
+      document.getElementById("cancelar-limpiar").onclick = () => {
+        modal.style.display = "none";
+        resolve(false);
+      };
+    });
+  };
+
   const buscadorProductos = () => {
     const inputBuscador = document.getElementById("buscador-productos");
     const productos = document.querySelectorAll(".producto-item");
@@ -279,12 +295,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (e.target.closest("#limpiar")) {
-      localStorage.removeItem("lista");
-      document.querySelectorAll(".inputCantidad").forEach((input) => {
-        input.value = 0;
-      });
-      cargarLista();
-      toast.success("Lista limpiada");
+      const confirmarYLimpiar = async () => {
+        const confirmacion = await confirmarLimpiar();
+        if (confirmacion) {
+          localStorage.removeItem("lista");
+          document.querySelectorAll(".inputCantidad").forEach((input) => {
+            input.value = 0;
+          });
+          cargarLista();
+          toast.success("Lista limpiada");
+        }
+      };
+      confirmarYLimpiar();
     }
 
     if (e.target.closest(".eliminar")) {
