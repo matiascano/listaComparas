@@ -1,39 +1,92 @@
-# Generador de Listas de Compras - Proyecto Final CoderHouse JavaScript
+# Lista de Compras - Proyecto Final CoderHouse JavaScript
 
-Este proyecto fue desarrollado como parte del curso de JavaScript en CoderHouse. Se trata de una aplicación web simple pero funcional que permite crear, gestionar e interactuar con listas de compras utilizando JavaScript Vanilla, HTML5 y CSS3, con persistencia de datos mediante LocalStorage del navegador.
+Aplicación web interactiva para gestionar listas de compras con categorización de productos, desarrollada como proyecto final del curso de JavaScript en CoderHouse.
 
-## Funcionalidades Actuales
+## Características Principales
 
-- Agregar productos a la lista de compras
-- Eliminar productos individualmente
-- Filtrar productos por categorías (ej: frutas, lácteos, limpieza, etc.)
-- Limpiar lista completa con un solo clic
-- Visualizar la lista de forma clara y organizada
-- Imprimir la lista directamente desde el navegador
-- Enviar la lista por WhatsApp con un solo clic (usando el enlace whatsapp://)
-- Persistencia de datos gracias a LocalStorage (la lista se guarda aunque cierres el navegador)
+### 🛒 Gestión de Productos
 
-## Tecnologías Utilizadas
+- **Catálogo por categorías**: 10 categorías organizadas (Limpieza, Despensa, Bebidas, Lácteos, etc.)
+- **Base de datos**: 50+ productos preconfigurados con imágenes
+- **Búsqueda inteligente**: Filtro de productos en tiempo real
+- **Productos personalizados**: Agregar productos no incluidos en el catálogo
+- **Control de cantidades**: Incrementar/decrementar con botones + y -
 
-- JavaScript Vanilla
-- HTML5
-- CSS3
-- LocalStorage del navegador
+### 📱 Interfaz de Usuario
 
-## Cómo Usar el Proyecto
+- **Diseño responsive**: Compatible con móviles y escritorio
+- **Material Icons**: Iconografía moderna de Google
+- **Notificaciones**: Sistema de toasts con Notyf
+- **Navegación fluida**: Scroll suave entre secciones
+- **Panel lateral**: Vista previa de la lista con toggle
 
-- Clona o descarga este repositorio:
-  git clone https://github.com/matiascano/listaComparas.git
-- Abre el archivo index.html en tu navegador (Chrome, Firefox, etc.).
-- ¡Comienza a armar tu lista de compras!
+### ✨ Funcionalidades Avanzadas
 
-## Próximos Features (En desarrollo o planeados)
+- **Drag & Drop**: Reordenar productos con SortableJS
+- **Estados de productos**: Marcar como completado/pendiente
+- **Edición en línea**: Modificar cantidades desde la vista de lista
+- **Exportación WhatsApp**: Envío directo con formato estructurado
+- **Impresión optimizada**: Vista para imprimir lista
+- **Persistencia**: LocalStorage mantiene datos entre sesiones
 
-- Crear múltiples listas (ej: "Supermercado", "Farmacia", "Regalos")
-- Guardar productos favoritos para añadirlos rápidamente
-- Añadir cantidades o unidades (ej: 2 kg de manzanas)
-- Modo oscuro / tema claro con botón de cambio
-- Buscar productos con un input de búsqueda
-- Ordenar la lista alfabéticamente o por categoría
-- Integrar drag & drop para reordenar productos.
-- Implementar un sistema de login básico con localStorage para personalizar listas por usuario.
+## Estructura del Proyecto
+
+```
+listaCompras/
+├── index.html          # Página principal - selección de productos
+├── listado.html        # Vista de lista completa
+├── css/
+│   └── style.css       # Estilos personalizados
+├── js/
+│   ├── index.js        # Lógica principal de la app
+│   └── listado.js      # Funcionalidad de la lista
+├── data/
+│   └── data.json       # Base de datos de productos y categorías
+└── img/
+    ├── categorias/     # Imágenes de categorías (11 archivos)
+    └── productos/      # Imágenes de productos (50 archivos)
+```
+
+## Tecnologías y Librerías
+
+### Core
+
+- **JavaScript ES6+**: Vanilla JavaScript moderno
+- **HTML5 Semántico**: Estructura accesible
+- **CSS3**: Estilos personalizados y responsive
+
+### Librerías Externas
+
+- **Axios**: Peticiones HTTP para cargar datos JSON
+- **Notyf**: Sistema de notificaciones toast
+- **SortableJS**: Funcionalidad drag & drop
+- **Material Symbols**: Iconografía de Google
+- **LocalStorage API**: Persistencia de datos
+
+## Instalación y Uso
+
+1. **Clonar el repositorio**:
+
+   ```bash
+   git clone https://github.com/matiascano/listaComparas.git
+   cd listaCompras
+   ```
+
+2. **Ejecutar la aplicación**:
+
+   - Abrir `index.html` en cualquier navegador moderno
+   - No requiere servidor web (funciona con file://)
+
+3. **Uso de la aplicación**:
+   - Seleccionar categoría en la página principal
+   - Agregar productos con botones + y -
+   - Ver lista completa en panel lateral o `listado.html`
+   - Enviar por WhatsApp o imprimir desde la vista de lista
+
+## Próximas mejoras (TODO)
+
+- Manejar modales dinamicamente
+- reestructurar JS para no duplicar funciones
+- mejorar ui
+- agregar tooltips
+- crear landing page
