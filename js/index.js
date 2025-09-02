@@ -335,9 +335,15 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    if (e.target.classList.contains("close")) {
+    if (e.target.id === "cancelar-nuevo-producto") {
       const modal = document.querySelector(".modalProductoNuevo");
       modal.style.display = "none";
+      document.getElementById("nombre-nuevo-producto").value = "";
+      const inputBuscador = document.getElementById("buscador-productos");
+      inputBuscador.value = "";
+      document.querySelectorAll(".producto-item").forEach((producto) => {
+        producto.style.display = "block";
+      });
     }
 
     if (e.target.classList.contains("modalProductoNuevo")) {
