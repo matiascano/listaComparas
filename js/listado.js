@@ -7,7 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     listadoCompleto.innerHTML = "";
 
     if (listaGuardada.length === 0) {
-      listadoCompleto.innerHTML = '<li>Aún no hay nada aquí. <a href="index.html">Agregar productos</a></li>';
+      listadoCompleto.innerHTML =
+        '<li>Aún no hay nada aquí. <a href="index.html">Agregar productos</a></li>';
       return;
     }
 
@@ -28,16 +29,35 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
       listadoCompleto.innerHTML += item;
     });
-    
+
     initSortable();
   };
 
-  const eliminarProducto = (nombre) => {
+  const eliminarProducto = async (nombre) => {
+    const confirmacion = await confirmarEliminacion();
+    if (!confirmacion) return;
+
     const listaGuardada = JSON.parse(localStorage.getItem("lista")) || [];
     const nuevaLista = listaGuardada.filter((item) => item.nombre !== nombre);
     localStorage.setItem("lista", JSON.stringify(nuevaLista));
     cargarLista();
     toast.error("Producto eliminado");
+  };
+
+  const confirmarEliminacion = () => {
+    return new Promise((resolve) => {
+      const modal = document.querySelector(".modalEliminar");
+      modal.style.display = "flex";
+
+      document.getElementById("confirmar-eliminar").onclick = () => {
+        modal.style.display = "none";
+        resolve(true);
+      };
+      document.getElementById("cancelar-eliminar").onclick = () => {
+        modal.style.display = "none";
+        resolve(false);
+      };
+    });
   };
 
   const editarProducto = (nombre) => {
@@ -56,7 +76,9 @@ document.addEventListener("DOMContentLoaded", () => {
           cargarLista();
           modal.style.display = "none";
           document.getElementById("nueva-cantidad").value = "";
-          toast.success("Cantidad actualizada - Producto marcado como pendiente");
+          toast.success(
+            "Cantidad actualizada - Producto marcado como pendiente"
+          );
         }
       };
     }
@@ -69,8 +91,10 @@ document.addEventListener("DOMContentLoaded", () => {
       producto.pendiente = !producto.pendiente;
       localStorage.setItem("lista", JSON.stringify(listaGuardada));
       cargarLista();
-      
-      const mensaje = producto.pendiente ? "Producto marcado como pendiente" : "Producto completado";
+
+      const mensaje = producto.pendiente
+        ? "Producto marcado como pendiente"
+        : "Producto completado";
       const tipo = producto.pendiente ? "error" : "success";
       toast[tipo](mensaje);
     }
@@ -78,15 +102,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const initSortable = () => {
     const listadoCompleto = document.getElementById("listado-completo");
-    if (listadoCompleto && listadoCompleto.children.length > 0 && !listadoCompleto.children[0].textContent.includes("Aún no hay nada")) {
+    if (
+      listadoCompleto &&
+      listadoCompleto.children.length > 0 &&
+      !listadoCompleto.children[0].textContent.includes("Aún no hay nada")
+    ) {
       Sortable.create(listadoCompleto, {
         animation: 150,
-        ghostClass: 'sortable-ghost',
-        chosenClass: 'sortable-chosen',
-        dragClass: 'sortable-drag',
-        onEnd: function() {
+        ghostClass: "sortable-ghost",
+        chosenClass: "sortable-chosen",
+        dragClass: "sortable-drag",
+        onEnd: function () {
           actualizarOrdenEnLocalStorage();
-        }
+        },
       });
     }
   };
@@ -163,7 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const numeroWhatsApp = document.getElementById("numero-whatsapp").value;
     const listaCompleta = [];
     const listaGuardada = JSON.parse(localStorage.getItem("lista")) || [];
-    
+
     listaGuardada.forEach((producto) => {
       const estado = producto.pendiente ? "[  ]" : "[✓]";
       listaCompleta.push(`${estado} ${producto.nombre} (${producto.cantidad})`);
