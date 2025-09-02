@@ -72,7 +72,6 @@
 
     <div class="modal" id="enviarPorWhatsapp">
       <div class="modal-content">
-        <span class="close">&times;</span>
         <h2>Enviar por WhatsApp</h2>
         <label for="numero-whatsapp">Número de WhatsApp:</label>
         <input
@@ -80,7 +79,10 @@
           id="numero-whatsapp"
           placeholder="Ingrese el número de WhatsApp"
         />
-        <button id="confirmar-enviar">Confirmar</button>
+        <div class="btn-inline">
+          <button id="cancelar-enviar" class="secundario">Cancelar</button>
+          <button id="confirmar-enviar">Confirmar</button>
+        </div>
       </div>
     </div>
 
@@ -90,7 +92,6 @@
 
     <div class="modal modalCantidad">
       <div class="modal-content">
-        <span class="close">&times;</span>
         <h2>Editar Cantidad</h2>
         <label for="nueva-cantidad">Nueva Cantidad:</label>
         <input
@@ -98,27 +99,32 @@
           id="nueva-cantidad"
           placeholder="Ingrese la nueva cantidad"
         />
-        <button id="confirmar-cantidad">Confirmar</button>
+        <div class="btn-inline">
+          <button id="cancelar-cantidad" class="secundario">Cancelar</button>
+          <button id="confirmar-cantidad">Confirmar</button>
+        </div>
       </div>
     </div>
 
     <div class="modal modalEliminar">
       <div class="modal-content">
-        <span class="close">&times;</span>
         <h2>Eliminar Producto</h2>
         <p>¿Estás seguro de que deseas eliminar este producto?</p>
-        <button id="cancelar-eliminar">Cancelar</button>
-        <button id="confirmar-eliminar">Confirmar</button>
+        <div class="btn-inline">
+          <button id="cancelar-eliminar" class="secundario">Cancelar</button>
+          <button id="confirmar-eliminar">Confirmar</button>
+        </div>
       </div>
     </div>
 
     <div class="modal modalLimpiar">
       <div class="modal-content">
-        <span class="close">&times;</span>
         <h2>Limpiar lista</h2>
         <p>¿Estás seguro de que deseas limpiar la lista de compras?</p>
-        <button id="cancelar-limpiar">Cancelar</button>
-        <button id="confirmar-limpiar">Confirmar</button>
+        <div class="btn-inline">
+          <button id="cancelar-limpiar" class="secundario">Cancelar</button>
+          <button id="confirmar-limpiar">Confirmar</button>
+        </div>
       </div>
     </div>
 

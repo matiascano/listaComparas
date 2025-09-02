@@ -97,6 +97,10 @@ document.addEventListener("DOMContentLoaded", () => {
           );
         }
       };
+      document.getElementById("cancelar-cantidad").onclick = () => {
+        modal.style.display = "none";
+        document.getElementById("nueva-cantidad").value = "";
+      };
     }
   };
 
@@ -198,13 +202,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const botonEnviar = document.getElementById("enviar");
   const modal = document.getElementById("enviarPorWhatsapp");
-  const botonCerrar = document.querySelector(".modal .close");
+  const botonCancelar = document.getElementById("cancelar-enviar");
 
   botonEnviar.addEventListener("click", () => {
     modal.style.display = "flex";
   });
 
-  botonCerrar.addEventListener("click", () => {
+  botonCancelar.addEventListener("click", () => {
     modal.style.display = "none";
   });
 
@@ -218,6 +222,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const estado = producto.pendiente ? "[  ]" : "[✓]";
       listaCompleta.push(`${estado} ${producto.nombre} (${producto.cantidad})`);
     });
+
+    const modal = document.getElementById("enviarPorWhatsapp");
 
     const mensaje = `Lista de Compras:\n\n${listaCompleta.join("\n")}`;
     const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(

@@ -58,7 +58,6 @@
 
         <div class="modal modalProductoNuevo">
           <div class="modal-content">
-            <span class="close">&times;</span>
             <h2>Agregar Producto Nuevo</h2>
             <label for="nombre-nuevo-producto">Nombre del Producto:</label>
             <input
@@ -119,21 +118,23 @@
 
     <div class="modal modalEliminar">
       <div class="modal-content">
-        <span class="close">&times;</span>
         <h2>Eliminar Producto</h2>
         <p>¿Estás seguro de que deseas eliminar este producto?</p>
-        <button id="cancelar-eliminar">Cancelar</button>
-        <button id="confirmar-eliminar">Confirmar</button>
+        <div class="btn-inline">
+          <button id="cancelar-eliminar" class="secundario">Cancelar</button>
+          <button id="confirmar-eliminar">Confirmar</button>
+        </div>
       </div>
     </div>
 
     <div class="modal modalLimpiar">
       <div class="modal-content">
-        <span class="close">&times;</span>
         <h2>Limpiar lista</h2>
         <p>¿Estás seguro de que deseas limpiar la lista de compras?</p>
-        <button id="cancelar-limpiar">Cancelar</button>
-        <button id="confirmar-limpiar">Confirmar</button>
+        <div class="btn-inline">
+          <button id="cancelar-limpiar">Cancelar</button>
+          <button id="confirmar-limpiar">Confirmar</button>
+        </div>
       </div>
     </div>
 
