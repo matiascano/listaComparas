@@ -83,6 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const categoriaCard = `
         <article class="categoria-card" data-categoria-objetivo="${categoria.nombre}">
           <img src="${categoria.imagen}" alt="${categoria.nombre}" />
+          <div class="tooltip" role="tooltip">${categoria.nombre}</div> 
         </article>
       `;
       contenedorCategorias.innerHTML += categoriaCard;
@@ -91,6 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 ${contenedorCategorias.innerHTML}
                 <article class="categoria-card" data-categoria-objetivo="Todas">
                   <img src="img/categorias/todas.webp" alt="Todas" />
+                  <div class="tooltip" role="tooltip">Todas</div>
                 </article>
     `;
   };

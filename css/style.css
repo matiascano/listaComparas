@@ -225,7 +225,6 @@ button.eliminar:hover {
   text-align: center;
   transition: transform 0.2s;
   border-radius: 100%;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -235,6 +234,30 @@ button.eliminar:hover {
 
 .categoria-card img {
   width: 50px;
+  border-radius: 100%;
+}
+
+.tooltip {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  padding: 0.2rem 0.4rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  background-color: var(--color-dark);
+  color: var(--color-light);
+  border-radius: var(--radius-s);
+  font-size: 0.8rem;
+}
+:has(> .tooltip) {
+  position: relative;
+}
+:has(> .tooltip):hover .tooltip {
+  opacity: 0.8;
+  z-index: 1;
 }
 
 .producto-item img,
@@ -254,6 +277,7 @@ button.eliminar:hover {
 .categoria-card:hover {
   transform: scale(1.05);
   cursor: pointer;
+  z-index: 10;
 }
 
 aside {
