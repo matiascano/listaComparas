@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   const cargarLista = () => {
     const listaGuardada = JSON.parse(localStorage.getItem("lista")) || [];
     const listadoProductos = document.getElementById("listado-productos");
@@ -49,6 +48,11 @@ document.addEventListener("DOMContentLoaded", () => {
           const categoriaSeleccionada = card.getAttribute(
             "data-categoria-objetivo"
           );
+          document
+            .querySelectorAll(".categoria-card")
+            .forEach((c) => c.classList.remove("active"));
+          card.classList.add("active");
+
           if (categoriaSeleccionada === "Todas") {
             document.querySelectorAll(".producto-item").forEach((producto) => {
               producto.style.display = "block";
@@ -163,9 +167,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const quitarProducto = (id) => {
     let listaGuardada = JSON.parse(localStorage.getItem("lista")) || [];
-    
+
     const idString = String(id);
-    listaGuardada = listaGuardada.filter((prod) => String(prod.id) !== idString);
+    listaGuardada = listaGuardada.filter(
+      (prod) => String(prod.id) !== idString
+    );
 
     localStorage.setItem("lista", JSON.stringify(listaGuardada));
 
@@ -220,7 +226,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const id = Date.now();
     agregarProducto(id, nombre, cantidad);
   };
-
 
   document.addEventListener("click", (e) => {
     if (e.target.closest(".mas")) {
@@ -298,8 +303,6 @@ document.addEventListener("DOMContentLoaded", () => {
       modal.style.display = "none";
     }
   });
-
-
 
   if (document.querySelector(".aside-toggle")) {
     document.querySelector(".aside-toggle").addEventListener("click", () => {
