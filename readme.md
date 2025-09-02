@@ -87,5 +87,4 @@ listaCompras/
 
 - Manejar modales dinamicamente
 - reestructurar JS para no duplicar funciones
-- mejorar ui
 - crear landing page

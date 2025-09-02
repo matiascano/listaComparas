@@ -69,6 +69,13 @@ input[type="checkbox"] {
   cursor: grabbing;
 }
 
+.btn-inline {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--space-s);
+  gap: 2rem;
+}
+
 /* ==== Layout ==== */
 main {
   width: 100%;
@@ -211,6 +218,10 @@ button,
   background-color: var(--color-primary);
   font-size: 1rem;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 button:hover,
@@ -241,6 +252,13 @@ button.secundario:hover {
   background-color: var(--color-light);
   border-radius: var(--radius-m);
   box-shadow: var(--shadow);
+}
+
+.item-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .categoria-card {
@@ -307,14 +325,14 @@ aside {
   display: flex;
   position: fixed;
   top: 2rem;
-  right: -270px;
+  right: -260px;
   z-index: 1;
   width: 300px;
   transition: right 0.3s ease-in-out;
   border: none;
   align-items: flex-start;
   &.open {
-    right: -26px;
+    right: 0;
   }
 }
 
@@ -353,7 +371,18 @@ aside {
   background-color: var(--color-light);
   border-bottom-left-radius: var(--radius-m);
   box-shadow: var(--shadow);
-  padding: var(--space-m);
+  padding: var(--space-xs);
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.aside-botonera {
+  gap: var(--space-s);
+}
+
+.aside-botonera button,
+.aside-botonera .btn {
+  width: 100%;
 }
 
 aside ul {
@@ -517,13 +546,6 @@ button.mas {
 
 .modal-content .close:hover {
   color: var(--color-danger);
-}
-
-.btn-inline {
-  display: flex;
-  justify-content: space-between;
-  margin-top: var(--space-s);
-  gap: 2rem;
 }
 
 /* ==== Go to Top ==== */

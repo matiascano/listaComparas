@@ -93,16 +93,19 @@
       </div>
       <div class="aside-content">
         <h2>Listado</h2>
-        <button id="limpiar">
-          <span class="material-symbols-outlined"> cleaning_services </span>
-        </button>
-        <a
-          href="./listado.html"
-          class="verlista"
-          rel="noopener"
-          aria-label="Abrir en ventana nueva"
-          ><span class="material-symbols-outlined"> visibility </span></a
-        >
+        <div class="btn-inline aside-botonera">
+          <button id="limpiar">
+            <span class="material-symbols-outlined"> cleaning_services </span>
+            Limpiar
+          </button>
+          <a
+            href="./listado.html"
+            class="verlista btn"
+            rel="noopener"
+            aria-label="Abrir en ventana nueva"
+            ><span class="material-symbols-outlined"> visibility </span> Ver</a
+          >
+        </div>
         <ul id="listado-productos"></ul>
       </div>
     </aside>
@@ -134,9 +137,9 @@
     <div class="modal modalLimpiar">
       <div class="modal-content">
         <h2>Limpiar lista</h2>
-        <p>¿Estás seguro de que deseas limpiar la noteOlvides?</p>
+        <p>¿Estás seguro de que deseas limpiar la lista?</p>
         <div class="btn-inline">
-          <button id="cancelar-limpiar">Cancelar</button>
+          <button id="cancelar-limpiar" class="secundario">Cancelar</button>
           <button id="confirmar-limpiar">Confirmar</button>
         </div>
       </div>
