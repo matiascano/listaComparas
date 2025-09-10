@@ -88,11 +88,14 @@ main {
   display: grid;
   gap: var(--space-m);
   padding: var(--space-m);
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
 .lista-categorias {
-  padding-block: var(--space-m);
-  margin-inline: var(--space-m);
+  max-width: 1200px;
+  padding: var(--space-m);
+  margin: 0 auto;
   width: auto;
   display: flex;
   flex-wrap: nowrap;
